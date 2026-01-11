@@ -1,0 +1,30 @@
+class Solution {
+    public void setZeroes(int[][] matrix) {
+    List<List<Integer>> list = new ArrayList<>();
+    int n = matrix.length;
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<matrix[i].length;j++)
+        {
+            if(matrix[i][j]==0)
+            {
+                list.add(new ArrayList<>(Arrays.asList(i,j))); 
+            }
+        }
+    }
+    int m = list.size();
+     for(int i=0;i<m;i++)
+    {
+      int a =list.get(i).get(0);
+      for(int j=0;j<matrix[a].length;j++)
+      {
+        matrix[a][j]=0;
+      } 
+      int b= list.get(i).get(1);
+      for(int j=0;j<n;j++)
+      {
+        matrix[j][b]=0;
+      }
+    }
+    }
+}
