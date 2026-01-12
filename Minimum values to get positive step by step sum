@@ -1,0 +1,16 @@
+class Solution {
+    public int minStartValue(int[] nums) {
+    int n=nums.length,mini=nums[0];
+    for(int i=1;i<n;i++)
+    {
+        nums[i] += nums[i-1];
+        mini = Math.min(nums[i],mini);
+    }    
+    int val=1;
+    if(mini<0)
+    {
+        val = Math.abs(mini)+1;
+    }
+    return val;
+    }
+}
