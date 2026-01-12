@@ -1,0 +1,26 @@
+class Solution {
+    public int hIndex(int[] citations) {
+    Arrays.sort(citations);
+     int index=0;
+    int n= citations.length,low=0,high=n-1;
+    while(low<=high)
+    {
+        int mid =(low+high)/2;
+        
+         if(citations[mid]<n-mid)
+        {
+            low =mid+1;
+        }
+        else{
+            index=mid;
+            high=mid-1;
+        }
+    } 
+   if(citations[index]==0)
+   {
+    return 0;
+   }
+    return n-index;   
+    } 
+    
+}
