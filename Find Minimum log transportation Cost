@@ -1,0 +1,16 @@
+class Solution {
+    public long minCuttingCost(int n, int m, int k) {
+    long cost =0;
+    if(n>k)
+    {
+        int a=n-k;
+        cost += (long)k*a;
+    }    
+    if(m>k)
+    {
+        int a = m-k;
+        cost += (long)k*a;
+    }
+    return cost;
+    }
+}
