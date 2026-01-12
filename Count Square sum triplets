@@ -1,0 +1,27 @@
+class Solution {
+    public int countTriples(int n) {
+        int count=0;
+    for(int i=1;i<=n;i++)
+    {
+        int a=i*i;
+        for(int j=i+1;j<=n;j++)
+        {
+            int b=j*j;
+            int c=(int)Math.sqrt(a+b);
+            if(Math.sqrt(a+b)%1!=0)
+            {
+                continue;
+            }
+           for(int k=j+1;k<=n;k++)
+           {
+            if(k==c)
+            {
+                count += 2;
+                break;
+            }
+           }
+        }
+    }
+    return count;
+    }
+}
