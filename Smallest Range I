@@ -1,0 +1,19 @@
+class Solution {
+    public int smallestRangeI(int[] nums, int k) {
+      int maxi=nums[0],mini=nums[0],n=nums.length;
+      for(int i=1;i<n;i++)
+      {
+        maxi=Math.max(maxi,nums[i]);
+        mini=Math.min(mini,nums[i]);
+      } 
+      mini += k;
+      if(maxi-k<mini)
+      {
+        maxi=mini;
+      }
+      else{
+        maxi -= k;
+      }
+      return maxi-mini;
+    }
+}
