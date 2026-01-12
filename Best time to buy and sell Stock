@@ -1,0 +1,15 @@
+class Solution {
+    public int maxProfit(int[] prices) {
+    int min = prices[0],n=prices.length,pro=0;
+    for(int i=1;i<n;i++)
+    {
+        pro = Math.max(pro,prices[i]-min);
+         min = Math.min(min,prices[i]);
+    }
+    if(n>1)
+    {
+        pro= Math.max(pro,prices[n-1]-prices[n-2]);
+    }
+    return pro;
+    }
+}
