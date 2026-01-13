@@ -1,0 +1,31 @@
+class Solution {
+    public String reverseStr(String s, int k) {
+    StringBuilder sb = new StringBuilder(s);
+    int n = sb.length(),i=0;
+    while(k>1&&i<n)
+    {
+        int a=i+k;
+        if(a>n)
+        {
+            a=n;
+        }
+        String str = sb.substring(i,a);
+        String st = rev(str);
+        sb.replace(i,a,st);
+        i += 2*k; 
+    }
+    return sb.toString();
+}
+public String rev(String s)
+{
+    StringBuilder sb = new StringBuilder(s);
+    int n = sb.length();
+    for(int i=0,j=n-1;i<n/2;i++,j--)
+    {
+        char ch =sb.charAt(i);
+        sb.setCharAt(i,sb.charAt(j));
+        sb.setCharAt(j,ch);
+    }
+    return sb.toString();
+}
+}
