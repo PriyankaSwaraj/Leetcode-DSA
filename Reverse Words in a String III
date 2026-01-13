@@ -1,0 +1,32 @@
+class Solution {
+    public String reverseWords(String s) {
+    StringBuilder sb = new StringBuilder(s);
+    int n = sb.length(),k=0;
+    for(int i=0;i<n;i++)
+    {
+        if(sb.charAt(i)==' ')
+        {
+           String str = sb.substring(k,i);
+            String st = rev(str);
+            sb.replace(k,i,st);
+            k=i+1;
+        }
+    }
+          String str = sb.substring(k,n);
+            String st = rev(str);
+            sb.replace(k,n,st);
+    return sb.toString();    
+    }
+    public String rev(String s)
+    {
+    StringBuilder sb = new StringBuilder(s);
+    int n = sb.length();
+    for(int i=0,j=n-1;i<n/2;i++,j--)
+    {
+        char ch =sb.charAt(i);
+        sb.setCharAt(i,sb.charAt(j));
+        sb.setCharAt(j,ch);
+    }
+    return sb.toString();
+   }
+}
