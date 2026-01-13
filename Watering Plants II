@@ -1,0 +1,25 @@
+class Solution {
+    public int minimumRefill(int[] plants, int capacityA, int capacityB) {
+     int count =0,alice= capacityA,bob=capacityB;
+     for(int i=0,j=plants.length-1;i<j;i++,j--)
+     {
+        if(alice<plants[i])
+        {
+            count++;
+            alice= capacityA;
+        }
+        alice -= plants[i];
+        if(bob<plants[j])
+        {
+            count++;
+            bob=capacityB;
+        }
+         bob -= plants[j];
+     } 
+     if(plants.length%2!=0&&alice<plants[plants.length/2]&&bob<plants[plants.length/2])
+     {
+        count++;
+     } 
+     return count;
+    }
+}
