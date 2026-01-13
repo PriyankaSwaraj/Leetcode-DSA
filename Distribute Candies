@@ -1,0 +1,16 @@
+class Solution {
+    public int distributeCandies(int[] candyType) {
+        Arrays.sort(candyType);
+    int count=1,n=candyType.length,limit=n/2;
+    int i=1;
+    while(count<limit&&i<n)
+    {
+       if(candyType[i]!=candyType[i-1])
+       {
+        count++;
+       }
+       i++;
+    }    
+    return count;
+    }
+}
