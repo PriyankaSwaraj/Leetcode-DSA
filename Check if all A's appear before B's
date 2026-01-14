@@ -1,0 +1,13 @@
+class Solution {
+    public boolean checkString(String s) {
+     int n = s.length();
+     for(int i=0,j=n-1;i<n-1;i++,j--)
+     {
+        if((s.charAt(i)=='b'&&s.charAt(i+1)=='a')||(s.charAt(j)=='a'&&s.charAt(j-1)=='b'))
+        {
+            return false;
+        }
+     }  
+     return true; 
+    }
+}
