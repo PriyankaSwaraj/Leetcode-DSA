@@ -1,0 +1,33 @@
+class Solution {
+    public int maximumCount(int[] nums) {
+    int count1=0,n=nums.length,count2=0;
+    int low=0,high=n-1;
+    while(low<=high)
+    {
+        int mid=(low+high)/2;
+        if(nums[mid]<=-1)
+        {
+            count1 =mid+1;
+             low=mid+1;
+        }
+        else{
+            high =mid-1;
+        }
+    }   
+    low=0;
+    high=n-1;
+    while(low<=high)
+    {
+        int mid=(low+high)/2;
+        if(nums[mid]>=1)
+        {
+            count2 =n-mid;
+             high=mid-1;
+        }
+        else{
+           low=mid+1;
+        }
+    }    
+    return Math.max(count1,count2);
+    }
+}
