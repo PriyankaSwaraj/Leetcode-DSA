@@ -1,0 +1,25 @@
+class Solution {
+    public String largestGoodInteger(String num) {
+     int no=0,n=num.length(),check=0;
+     for(int i=0;i<n-2;i++)
+     {
+       if(num.charAt(i)==num.charAt(i+1)&&num.charAt(i)==num.charAt(i+2))
+       {
+        int h = Integer.parseInt(num.substring(i,i+3));
+        no = Math.max(h,no);
+        check += 1;
+       }
+     } 
+     String str =Integer.toString(no);
+     if(no==0&&check>0)
+     {
+     str += Integer.toString(no);
+     str += Integer.toString(no);   
+     }
+     else if(check <1)
+     {
+        return "";
+     }
+     return str;
+    }
+}
