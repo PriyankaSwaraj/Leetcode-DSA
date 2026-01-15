@@ -1,0 +1,25 @@
+class Solution {
+    public int missingMultiple(int[] nums, int k) {
+    int n = nums.length;
+        Arrays.sort(nums);
+       int i= nums[n-1]/k,m=1;
+       while(m<=i)
+       {
+           int check=0,num= k*m;
+         for(int j=n-1;j>=0;j--)
+         {
+             if(nums[j]==num)
+             {
+                 check += 1;
+                 break;
+             }
+         }
+         if(check<1)
+         {
+             return num;
+         }
+         m++;
+       }
+        return (i+1)*k;
+    }
+}
