@@ -1,0 +1,18 @@
+class Solution {
+    public String removeDuplicates(String s) {
+    StringBuilder sb = new StringBuilder(s);
+     for(int i=1;i<sb.length();i++)
+     {
+        if(sb.charAt(i)==sb.charAt(i-1))
+        {
+            sb.delete(i-1,i+1);
+            i -= 2;
+            if(i<0)
+            {
+                i=0;
+            }
+        }
+     }   
+     return sb.toString();
+    }
+    }
