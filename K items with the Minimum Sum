@@ -1,0 +1,16 @@
+class Solution {
+    public int kItemsWithMaximumSum(int numOnes, int numZeros, int numNegOnes, int k) {
+        int sum =0;
+    if(numOnes>0&&k>0)
+    {
+     sum += Math.min(k,numOnes);
+    }
+    k = k-numOnes;
+    k = k-numZeros;
+    if(numNegOnes>0&&k>0)
+    {
+    sum += k*(-1); 
+    } 
+    return sum;  
+    }
+}
