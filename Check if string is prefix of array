@@ -1,0 +1,16 @@
+class Solution {
+    public boolean isPrefixString(String s, String[] words) {
+     String str ="";
+     int i=0,n=s.length(),m=words.length;
+     while(str.length()<n&&i<m)
+     {
+       str += words[i];
+       i++;
+     }   
+     if(str.equals(s))
+     {
+        return true;
+     }
+     return false;
+    }
+}
