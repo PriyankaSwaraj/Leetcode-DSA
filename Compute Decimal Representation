@@ -1,0 +1,25 @@
+class Solution {
+    public int[] decimalRepresentation(int n) {
+    String str = Integer.toString(n);
+        ArrayList<Integer> ar = new ArrayList<Integer>();
+        int len = 1;
+        while(n>0)
+        {
+            int num= n%10*len;
+            if(num!=0)
+            {
+               ar.add(num);
+            }
+
+            n= n/10;
+            len *= 10;
+        }
+        Collections.reverse(ar);
+        int[] arr = new int[ar.size()];
+        for(int i=0;i<ar.size();i++)
+        {
+            arr[i] = ar.get(i);
+        }
+        return arr;
+    }
+}
