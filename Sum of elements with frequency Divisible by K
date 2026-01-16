@@ -1,0 +1,23 @@
+class Solution {
+    public int sumDivisibleByK(int[] nums, int k) {
+    Arrays.sort(nums);
+    int count=1,sum=0,n=nums.length;
+    for(int i=1;i<n;i++)
+    {
+        if(nums[i]!=nums[i-1])
+        {
+            if(count%k==0)
+            {
+                sum += nums[i-1]*count;
+            }
+            count=0;
+        }
+         count++;
+    }
+    if(count%k==0)
+    {
+        sum += nums[n-1]*count;
+    }
+    return sum;
+    }
+}
