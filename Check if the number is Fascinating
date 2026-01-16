@@ -1,0 +1,22 @@
+class Solution {
+    public boolean isFascinating(int n) {
+    int n1 = 2*n,n2 = 3*n;
+    String str = Integer.toString(n)+Integer.toString(n1)+Integer.toString(n2);
+    for(int i=1;i<10;i++)
+    {
+      int count =0;
+      for(int j=0;j<str.length();j++)
+      {
+        if(Character.getNumericValue(str.charAt(j))==i)
+        {
+            count ++;
+        }
+      }
+      if(count != 1)
+      {
+        return false;
+      }
+    } 
+    return true;   
+    }
+}
