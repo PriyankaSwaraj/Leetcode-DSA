@@ -1,0 +1,22 @@
+class Solution {
+    public int vowelConsonantScore(String s) {
+    int n=s.length();
+    int v= 0,c=0;
+     for(int i=0;i<n;i++)
+         {  
+          if((s.charAt(i)=='a'||s.charAt(i)=='e'||s.charAt(i)=='i'||s.charAt(i)=='o'||s.charAt(i)=='u'))
+         {
+             v++;
+         }
+          else if(s.charAt(i)>='a'&&s.charAt(i)<='z'){
+              c++;
+          }
+         }
+        if(c>0)
+        {
+            return (int)Math.floor(v/c);
+        }
+        return 0;
+    }
+}
+ 
