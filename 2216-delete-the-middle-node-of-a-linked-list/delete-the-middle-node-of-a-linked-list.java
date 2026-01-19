@@ -15,22 +15,14 @@ class Solution {
             head=null;
             return head;
         }
-     int size=1;
-     ListNode nd=head;
-     while(nd.next!=null)
-     {
-        size++;
-        nd=nd.next;
-     }   
-     int n=(size/2);
-     ListNode curr=head;
-     int i=1;
-     while(i<n)
-     {
+    ListNode curr= head;
+    ListNode ne =head.next;
+    while(ne.next!=null&&ne.next.next!=null)
+    {
         curr=curr.next;
-        i++;
-     }
-     curr.next=curr.next.next;
+        ne=ne.next.next;
+    }
+    curr.next=curr.next.next;
      return head;
     }
 }
