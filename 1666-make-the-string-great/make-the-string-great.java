@@ -1,30 +1,25 @@
 class Solution {
     public String makeGood(String s) {
-   Stack<Character> stack=new Stack<>();
+   StringBuilder sb=new StringBuilder();
    int n=s.length();
-   stack.push(s.charAt(0));
+   sb.append(s.charAt(0));
    for(int i=1;i<n;i++)
    {
-     if(stack.isEmpty())
-     {
-        stack.push(s.charAt(i));
+    if(sb.length()<1)
+    {
+        sb.append(s.charAt(i));
         continue;
-     }
-     char ch=stack.peek();
-     char ch2=s.charAt(i);
-     if(Character.toLowerCase(ch)==Character.toLowerCase(ch2)&&
-        Character.isLowerCase(ch)!=Character.isLowerCase(ch2))
-        {
-        stack.pop();
+    }
+    char ch1=sb.charAt(sb.length()-1);
+    char ch2=s.charAt(i);
+    if(Character.toLowerCase(ch1)==Character.toLowerCase(ch2)&&
+      Character.isLowerCase(ch1)!=Character.isLowerCase(ch2))
+      {
+        sb.deleteCharAt(sb.length()-1);
         continue;
-        }
-        stack.push(ch2);
+      }
+      sb.append(ch2);
    }
-   StringBuilder sb=new StringBuilder();
-   while(!stack.isEmpty())
-   {
-    sb.append(stack.pop());
-   }
-    return sb.reverse().toString();
+   return sb.toString();
     }
 }
