@@ -1,15 +1,15 @@
 class Solution {
     public int repeatedNTimes(int[] nums) {
     int n=nums.length;
-    int[] freq=new int[100001];
+    ArrayList<Integer> set=new ArrayList<>();
     for(int i=0;i<n;i++)
     {
-        freq[nums[i]]++;
-        if(freq[nums[i]]>1)
+        if(set.contains(nums[i]))
         {
             return nums[i];
         }
-    }    
+        set.add(nums[i]);
+    }
     return 0;
     }
 }
