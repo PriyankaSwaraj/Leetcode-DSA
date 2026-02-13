@@ -4,11 +4,12 @@ class Solution {
     int n=s.length(),count=0;
     for(int i=0;i<n;i++)
     {
-        if(frequency[s.charAt(i)-'a']==0)
+        int ch=(int)s.charAt(i)-97;
+        if(frequency[ch]==0)
         {
             count++;
         }
-        frequency[s.charAt(i)-'a']++;
+        frequency[ch]++;
     } 
     return count;   
     }
