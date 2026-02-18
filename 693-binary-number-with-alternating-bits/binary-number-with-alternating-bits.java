@@ -1,17 +1,13 @@
 class Solution {
     public boolean hasAlternatingBits(int n) {
-    String str=Integer.toString(n%2);
-    n /= 2;
-    int k=1;
-    while(n>0)
+    String str=Integer.toBinaryString(n);
+    int num=str.length();
+    for(int i=0;i<num-1;i++)
     {
-        str += Integer.toString(n%2);
-        k++;
-        if(str.charAt(k-1)==str.charAt(k-2))
+        if(str.charAt(i)==str.charAt(i+1))
         {
             return false;
         }
-        n /= 2;
     }
     return true;
     }
