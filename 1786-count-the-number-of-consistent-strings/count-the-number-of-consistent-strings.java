@@ -1,27 +1,27 @@
 class Solution {
     public int countConsistentStrings(String allowed, String[] words) {
-    HashSet<Character> set1=new HashSet<>();
     int count=0,n=words.length;
+    boolean[] freq=new boolean[26];
     for(char ch:allowed.toCharArray())
     {
-        set1.add(ch);
-    } 
+        freq[ch-'a']=true;
+    }
     for(int i=0;i<n;i++)
     {
-      boolean check=true;
-      for(char ch: words[i].toCharArray())
-      {
-        if(!set1.contains(ch))
+        boolean check=true;
+        for(char ch : words[i].toCharArray())
         {
-            check=false;
-            break;
+            if(!freq[ch-'a'])
+            {
+                check=false;
+                break;
+            }
         }
-      }
-      if(check)
-      {
-        count++;
-      }
+        if(check)
+        {
+            count++;
+        }
     }
-    return count;
+    return count++;
     }
 }
