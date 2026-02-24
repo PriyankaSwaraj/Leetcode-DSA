@@ -6,11 +6,14 @@ class Solution {
     {
         freq1[ch-'a']++;
     }    
-    HashSet<Integer> set=new HashSet<>();
+   int n=freq1[num[0]-'a'];
     for(char ch:num)
     {
-        set.add(freq1[ch-'a']);
+        if(freq1[ch-'a']!=n)
+        {
+            return false;
+        }
     }
-    return set.size()==1;
+    return true;
     }
 }
