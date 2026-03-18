@@ -10,17 +10,8 @@
  */
 class Solution {
     public ListNode mergeNodes(ListNode head) {
-     int sum=0;
-     ListNode temp=head.next;
-     while(temp!=null&&temp.val!=0)
-     {
-        sum += temp.val;
-        temp=temp.next;
-     }
-     ListNode curr=temp.next;
-     temp.val=sum;
-     head=temp;
-     ListNode prev=temp;
+     ListNode curr=head.next;
+     ListNode prev=head;
      while(curr!=null&&curr.next!=null)
      {
         int sum2=0;
@@ -30,11 +21,17 @@ class Solution {
             sum2 += current.val;
             current = current.next;
         }
-        ListNode tem=new ListNode(sum2);
-        prev.next=tem;
+        prev.val=sum2;
         prev =prev.next;
         curr=current.next;
      }
-     return temp;  
+     prev.next=null;
+     ListNode num=head;
+     while(num.next!=null&&num.next.next!=null)
+     {
+        num =num.next;
+     }
+     num.next=null;
+     return head;  
     }
 }
