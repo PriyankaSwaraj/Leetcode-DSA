@@ -15,10 +15,12 @@ class Solution {
     {
         n++;
     }
-    ListNode temp=head;    
-    for(int i=0;i<n/2;i++)
+    ListNode temp=head;
+    ListNode fast=head;    
+    while(fast!=null&&fast.next!=null)
     {
         temp=temp.next;
+        fast=fast.next.next;
     }
     ListNode temp2=reverseList(temp);
     temp=head;
