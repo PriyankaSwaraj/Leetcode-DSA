@@ -24,11 +24,17 @@ class Solution {
         if(!stack.contains(ch))
         stack.push(ch);
     }
-    StringBuilder sb=new StringBuilder();
+    ArrayList<Character> arr=new ArrayList<>();
     while(!stack.isEmpty())
     {
-        sb.append(stack.pop());
+        arr.add(stack.pop());
     }
-    return sb.reverse().toString();
+    int k=arr.size();
+    StringBuilder sb=new StringBuilder();
+    for(int i=k-1;i>=0;i--)
+    {
+        sb.append(arr.get(i));
+    } 
+    return sb.toString();
     }
 }
