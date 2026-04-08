@@ -14,20 +14,31 @@
  * }
  */
 class Solution {
-    int height=Integer.MAX_VALUE;
     public int minDepth(TreeNode root) {
-       if(root==null)
-       return 0; 
-      min(root,1);
-      return height;   
-    }
-    public void min(TreeNode root, int level)
-    {
         if(root==null)
-        return;
-        if(root.left==null&&root.right==null)
-        height=Math.min(height,level);
-        min(root.left,level+1);
-        min(root.right,level+1);
+        {
+            return 0;
+        }
+     int lvl=0;
+     Queue<TreeNode> q=new ArrayDeque<>();
+     q.add(root);
+     while(!q.isEmpty())
+     {
+        lvl++;
+        int count=q.size();
+        for(int i=0;i<count;i++)
+        {
+            TreeNode temp=q.poll();
+            if(temp.left==null&&temp.right==null)
+            {
+                return lvl;
+            }
+            if(temp.left!=null)
+            q.add(temp.left);
+            if(temp.right!=null)
+            q.add(temp.right);
+        }
+     } 
+     return lvl;  
     }
 }
