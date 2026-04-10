@@ -17,6 +17,7 @@ class Solution {
                         curr += k-j;
                         curr += k-i;
                         max=Math.min(max,curr);
+                        break;
                     }
                 }
             }
