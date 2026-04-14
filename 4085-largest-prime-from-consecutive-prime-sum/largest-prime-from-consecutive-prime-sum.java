@@ -11,16 +11,19 @@ class Solution {
             }
         }
     }    
-    long sum=0,count=0;
-    for(int i=2;i<=n;i++)
+    int sum=0,count=0,i=2;
+    while(i<=n&&sum<=n)
     {
         if(!prime[i])
         {
-            sum += (long)i;
-            if(sum<=n&&!prime[(int)sum])
-            count=sum;
+            sum += i;
+            if(sum<=n&&!prime[sum])
+            {
+               count=sum;
+            }
         }
+        i++;
     }
-    return (int)count;
+    return count;
     }
 }
