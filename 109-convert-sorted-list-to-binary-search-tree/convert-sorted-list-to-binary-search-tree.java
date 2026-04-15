@@ -25,25 +25,28 @@
  */
 class Solution {
     public TreeNode sortedListToBST(ListNode head) {
-    ArrayList<Integer> arr=new ArrayList<>();
-    while(head!=null)
-    {
-        arr.add(head.val);
-        head=head.next;
-    }   
-    int n=arr.size();
-    return build(arr,0,n-1); 
+     if(head==null)
+     {
+        return null;
+     }   
+     return build(head,null);
     }
-    public TreeNode build(ArrayList<Integer> arr,int low,int high)
+    public TreeNode build(ListNode start,ListNode end)
     {
-        if(low>high)
+        if(start==end)
         {
             return null;
         }
-        int n=(low+high)/2;
-        TreeNode root=new TreeNode(arr.get(n));
-        root.left=build(arr,low,n-1);
-        root.right=build(arr,n+1,high);
+        ListNode slow=start;
+        ListNode fast=start;
+        while(fast!=end&&fast.next!=end)
+        {
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        TreeNode root=new TreeNode(slow.val);
+        root.left=build(start,slow);
+        root.right=build(slow.next,end);
         return root;
     }
 }
