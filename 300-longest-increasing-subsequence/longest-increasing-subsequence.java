@@ -1,24 +1,32 @@
 class Solution {
     public int lengthOfLIS(int[] nums) {
-    int n=nums.length;
-    int[] lis=new int[n];
-    lis[0]=1;
+    int n=nums.length,len=1;
+    int[] tail=new int[n];
+    tail[0]=nums[0];
     for(int i=1;i<n;i++)
     {
-        lis[i]=1;
-        for(int j=0;j<i;j++)
+        if(nums[i]>tail[len-1])
         {
-            if(nums[j]<nums[i])
-            {
-                lis[i]=Math.max(lis[i],lis[j]+1);
-            }
+            tail[len]=nums[i];
+            len++;
         }
-    } 
-    int res=1;
-    for(int i=1;i<n;i++)
+        else{
+            int c=ceilIndex(tail,0,len-1,nums[i]);
+            tail[c]=nums[i];
+        }
+    }  
+    return len;  
+    }
+    public int ceilIndex(int[] tail,int l,int r,int x)
     {
-        res=Math.max(res,lis[i]);
-    }   
-    return res;
+        while(r>l)
+        {
+            int m=l+(r-l)/2;
+            if(tail[m]>=x)
+            r=m;
+            else
+            l=m+1;
+        }
+        return r;
     }
 }
