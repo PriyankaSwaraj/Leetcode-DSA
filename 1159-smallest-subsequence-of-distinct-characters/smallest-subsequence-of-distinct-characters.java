@@ -4,37 +4,30 @@ class Solution {
     int n=s.length();
     for(int i=0;i<n;i++)
     {
-        freq[s.charAt(i)-'a']=i;
-    }   
-    Stack<Character> stack=new Stack<>();
-    for(int i=0;i<n;i++)
+      freq[s.charAt(i)-'a']=i;
+    }  
+    Stack<Character> stack = new Stack<>();
+    stack.push(s.charAt(0));
+    for(int i=1;i<n;i++)
     {
         char ch=s.charAt(i);
         while(!stack.isEmpty()&&!stack.contains(ch))
         {
-          char ch2=stack.peek();
-          if(ch2>ch&&freq[ch2-'a']>i)
-          {
+            if(stack.peek()>ch&&freq[stack.peek()-'a']>i)
             stack.pop();
-          }
-          else{
+            else
             break;
-          }
         }
         if(!stack.contains(ch))
-        stack.push(ch);
+        {
+            stack.push(ch);
+        }
     }
-    ArrayList<Character> arr=new ArrayList<>();
+    StringBuilder sb=new StringBuilder();
     while(!stack.isEmpty())
     {
-        arr.add(stack.pop());
+        sb.append(stack.pop());
     }
-    int k=arr.size();
-    StringBuilder sb=new StringBuilder();
-    for(int i=k-1;i>=0;i--)
-    {
-        sb.append(arr.get(i));
-    } 
-    return sb.toString();
+    return sb.reverse().toString();
     }
 }
