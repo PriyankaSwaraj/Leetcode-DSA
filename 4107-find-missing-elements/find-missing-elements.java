@@ -1,22 +1,27 @@
 class Solution {
     public List<Integer> findMissingElements(int[] nums) {
-     int[] freq=new int[101];
-     int n=nums.length,max=Integer.MIN_VALUE,min=Integer.MAX_VALUE;
-     List<Integer> list=new ArrayList<>();
-     for(int num: nums)
-     {
-       max=Math.max(max,num);
-       min=Math.min(min,num);
-       freq[num]++;
-     }   
-    for(int i=min+1;i<max;i++)
-
+    int small=nums[0],large=nums[0];
+    boolean[] freq=new boolean[101];
+    for(int num:nums)
     {
-        if(freq[i]==0)
+        if(num<small)
         {
-            list.add(i);
+            small=num;
+        }
+        if(num>large)
+        {
+            large=num;
+        }
+        freq[num]=true;
+    }    
+    ArrayList<Integer> arr=new ArrayList<>();
+    for(int i=small;i<=large;i++)
+    {
+        if(!freq[i])
+        {
+            arr.add(i);
         }
     }
-    return list;
+    return arr;
     }
 }
