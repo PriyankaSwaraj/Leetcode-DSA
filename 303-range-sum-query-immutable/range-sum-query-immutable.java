@@ -1,16 +1,21 @@
 class NumArray {
-   int[] num;
+    int[] num;
     public NumArray(int[] nums) {
-       num=nums; 
+    int n=nums.length;
+    num=new int[n];
+    if(n==0)
+    {
+        return;
+    }
+    num[0]=nums[0];
+    for(int i=1;i<n;i++)
+    {
+      num[i]=nums[i]+num[i-1]; 
+    }    
     }
     
     public int sumRange(int left, int right) {
-       int sum=0;
-       for(int i=left;i<=right;i++)
-       {
-        sum += num[i];
-       } 
-       return sum;
+    return left>0?num[right]-num[left-1]:num[right];   
     }
 }
 
