@@ -5,15 +5,15 @@ class Solution {
     for(int gift:gifts)
     {
         pq.add(gift);
+        sum += gift;
     }    
     while(k>0)
     {
-        pq.add((int)(Math.sqrt(pq.poll())));
+        int num=pq.poll();
+        int n=(int)Math.sqrt(num);
+        pq.add(n);
+        sum -= num-n;
         k--;
-    }
-    while(!pq.isEmpty())
-    {
-        sum += pq.poll();
     }
     return sum;
     }
