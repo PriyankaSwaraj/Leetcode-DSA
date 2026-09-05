@@ -53,7 +53,6 @@ class Solution {
             curr.next=temp;
             curr=temp;
         }
-        curr.next=null;
     }
     return root;
     }
