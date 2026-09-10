@@ -1,34 +1,28 @@
 class Solution {
-    class Pair implements Comparable<Pair>{
-        String user;
-        int words;
-        Pair(String user,int words)
-        {
-            this.user=user;
-            this.words=words;
-        }
-        public int compareTo(Pair other)
-        {
-            if(this.words==other.words)
-            {
-                return (other.user).compareTo(this.user);
-            }
-            return other.words-this.words;
-        }
-    }
     public String largestWordCount(String[] messages, String[] senders) {
      HashMap<String,Integer> map=new HashMap<>();
      int i=0;
-     for(String sen:messages)
+     for(String user:senders)
      {
-        map.put(senders[i],map.getOrDefault(senders[i],0)+sen.split(" ").length);
+        map.put(user,map.getOrDefault(user,0)+messages[i].split(" ").length);
         i++;
-     }
-     PriorityQueue<Pair> pq=new PriorityQueue<>();
+     }    
+     int max=0;
+     String[] result=new String[1];
      for(Map.Entry<String,Integer> e:map.entrySet())
      {
-        pq.add(new Pair(e.getKey(),e.getValue()));
+        int freq=e.getValue();
+        String str=e.getKey();
+        if(freq>max)
+        {
+            result[0]=str;
+            max=freq;
+        }
+        else if(freq==max&&result[0].compareTo(str)<0)
+        { 
+          result[0]=str;  
+        }
      }
-     return pq.poll().user;
+     return result[0];
     }
 }
