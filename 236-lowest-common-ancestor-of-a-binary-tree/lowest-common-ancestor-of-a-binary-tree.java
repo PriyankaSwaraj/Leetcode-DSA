@@ -17,18 +17,16 @@ class Solution {
     {
         return root;
     }
-    TreeNode lf=lowestCommonAncestor(root.left,p,q);
-    TreeNode rf=lowestCommonAncestor(root.right,p,q);
-    if(lf!=null&&rf!=null)
+    TreeNode l=lowestCommonAncestor(root.left,p,q);
+    TreeNode r=lowestCommonAncestor(root.right,p,q);
+    if(l!=null&&r!=null)
     {
         return root;
     }
-    if(lf!=null)
+    if(l!=null)
     {
-        return lf;
+        return l;
     }
-    else{
-        return rf;
-    }
+   return r;
     }
 }
