@@ -1,11 +1,12 @@
 class Solution {
     public int reverseDegree(String s) {
-    int count=0,n=s.length();
-    for(int i=0;i<n;i++)
-    {
-        int num='a'-s.charAt(i)+26;
-        count += num*(i+1);
-    }    
-    return count;
+     int degree=0,n=s.length();
+     for(int i=0;i<n;i++)
+     {
+        char ch=s.charAt(i);
+        int pos=ch-(71+(2*(ch-'a')));
+        degree += pos*(i+1);
+     }
+     return degree;   
     }
 }
