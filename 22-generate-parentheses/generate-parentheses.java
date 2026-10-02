@@ -1,25 +1,23 @@
 class Solution {
-    ArrayList<String> arr=new ArrayList<>();
     public List<String> generateParenthesis(int n) {
-    StringBuilder res=new StringBuilder();
-    recur(res,n,0,0);
-    return arr;   
+      List<String> result=new ArrayList<>();
+      paren(result,n,0,0,"");
+      return result;    
     }
-    public void recur(StringBuilder res, int n,int lef,int right)
+    public void paren(List<String> res,int n,int l,int r,String str)
     {
-     if(lef==right&&lef==n)
-     {
-        arr.add(res.toString());
-     }
-     if(lef<n)
-     {
-        recur(res.append('('),n,lef+1,right);
-     }
-     if(lef>right)
-     {
-        recur(res.append(')'),n,lef,right+1);
-     }
-     if(res.length()>0)
-     res.deleteCharAt(res.length()-1);
+        if(l==n&&l==r)
+        {
+            res.add(str);
+            return;
+        } 
+        if(l<n)
+        {
+          paren(res,n,l+1,r,str+"("); 
+        }
+        if(r<l)
+        {
+            paren(res,n,l,r+1,str+")");
+        }
     }
 }
