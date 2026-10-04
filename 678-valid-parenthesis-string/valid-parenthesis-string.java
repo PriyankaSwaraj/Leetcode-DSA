@@ -1,42 +1,39 @@
 class Solution {
     public boolean checkValidString(String s) {
-    Stack<Integer> par=new Stack<>();
-    Stack<Integer> abs=new Stack<>();
-    int n=s.length();
-    for(int i=0;i<n;i++)
-    {
+     Stack<Integer> stack=new Stack<>();
+     Stack<Integer> mul=new Stack<>();
+     int n=s.length();
+     for(int i=0;i<n;i++)
+     {
         char ch=s.charAt(i);
         if(ch=='(')
         {
-            par.push(i);
+            stack.push(i);
         }
         else if(ch=='*')
         {
-            abs.push(i);
+            mul.push(i);
         }
         else{
-            if(!par.isEmpty())
+            if(!stack.isEmpty())
             {
-                par.pop();
+                stack.pop();
             }
-            else if(!abs.isEmpty())
+            else if(!mul.isEmpty())
             {
-                abs.pop();
+                mul.pop();
             }
             else{
                 return false;
             }
         }
-    }
-    while(!par.isEmpty()&&!abs.isEmpty())
-    {
-        int a=par.pop();
-        int b=abs.pop();
+     }   
+     while(!stack.isEmpty()&&!mul.isEmpty())
+     {
+        int a=stack.pop(),b=mul.pop();
         if(a>b)
-        {
-          return false;
-        }
-    }
-    return par.isEmpty();
+        return false;
+     }
+     return stack.isEmpty();
     }
 }
