@@ -1,27 +1,24 @@
 class Solution {
     public int minimumTotal(List<List<Integer>> triangle) {
         int m=triangle.size();
-        int fmin=triangle.get(0).get(0),n=2;
-        ArrayList<Integer> arr=new ArrayList<>(); 
-        arr.add(fmin);
-        for(int i=1;i<m;i++)
+        int[][] dp=new int[m][m]; 
+       dp[0][0]=triangle.get(0).get(0);
+       int n=2,fmin=dp[0][0];
+       for(int i=1;i<m;i++)
+       {
+        List<Integer> curr=triangle.get(i);
+        dp[i][0]=curr.get(0)+dp[i-1][0];
+        dp[i][n-1]=curr.get(n-1)+dp[i-1][n-2];
+        int min=Math.min(dp[i][0],dp[i][n-1]);
+        for(int j=1;j<n-1;j++)
         {
-            ArrayList<Integer> nums=new ArrayList<>();
-            List<Integer> curr=triangle.get(i);
-            nums.add(curr.get(0)+arr.get(0));
-            int min=nums.get(0);
-            for(int j=1;j<n-1;j++)
-            {
-                int c=curr.get(j);
-                nums.add(Math.min(arr.get(j-1)+c,arr.get(j)+c));
-                min=Math.min(min,nums.get(j));
-            }
-            nums.add(curr.get(n-1)+arr.get(n-2));
-            fmin=Math.min(min,nums.get(n-1));
-            arr.clear();
-            arr.addAll(nums);
-            n++;
+           int a=curr.get(j); 
+          dp[i][j]=Math.min(dp[i-1][j-1]+a,dp[i-1][j]+a);
+          min=Math.min(min,dp[i][j]);
         }
-        return fmin;
+        fmin=min;
+        n++;
+       }
+       return fmin;
     }
 }
