@@ -1,21 +1,19 @@
 class Solution {
     public long maxAlternatingSum(int[] nums) {
-       PriorityQueue<Integer> pq=new PriorityQueue<>();
-       for(int num:nums)
-       {
-        pq.add(num*num);
-       }
-       int n=nums.length/2;
+       int n=nums.length,k=0;
        long diff=0,ans=0;
-       while(n>0)
+       for(int i=0;i<n;i++)
        {
-        diff += pq.poll();
-        n--;
+        nums[i] *= nums[i];
+        ans += nums[i];
        }
-       while(!pq.isEmpty())
+       Arrays.sort(nums);
+       n /=2;
+       while(k<n)
        {
-        ans += pq.poll();
+        diff += nums[k];
+        k++;
        }
-       return ans-diff;
+       return ans-(diff*2);
     }
 }
