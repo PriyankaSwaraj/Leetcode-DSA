@@ -2,7 +2,7 @@ class Solution {
     public int[] restoreArray(int[][] adjacentPairs) {
      HashMap<Integer,ArrayList<Integer>> map=new HashMap<>();
      HashSet<Integer> set=new HashSet<>();
-      int num=0,m=adjacentPairs.length+1;
+      int m=adjacentPairs.length+1;
       for(int[] arr:adjacentPairs)
       {
         ArrayList<Integer> nums;
@@ -25,8 +25,6 @@ class Solution {
          nums1.add(arr[0]);
          map.put(arr[0],nums);
          map.put(arr[1],nums1);
-         num ^= arr[0];
-         num ^= arr[1];
       }
       int nums1=0;
       for(int[] arr:adjacentPairs)
