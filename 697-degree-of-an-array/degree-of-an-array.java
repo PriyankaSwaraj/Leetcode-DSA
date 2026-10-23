@@ -1,6 +1,7 @@
 class Solution {
     public int findShortestSubArray(int[] nums) {
      int[] freq=new int[50000];
+     boolean[] check=new boolean[50000];
      int maxf=0,max=Integer.MAX_VALUE,n=nums.length;
      for(int num:nums)
      {
@@ -9,10 +10,11 @@ class Solution {
      }
      for(int num:nums)
      {
-        if(freq[num]==maxf)
+        if(!check[num]&&freq[num]==maxf)
         {
           max=Math.min(max,result(nums,n,num));
         }
+        check[num]=true;
      }
      return max;
     }
