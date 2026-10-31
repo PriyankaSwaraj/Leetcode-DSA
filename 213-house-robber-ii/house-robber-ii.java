@@ -1,26 +1,25 @@
 class Solution {
     public int rob(int[] nums) {
-    int n=nums.length;
-    if(n==1)
-    {
-        return nums[0];
-    }
-    if(n==2)
-    {
-        return Math.max(nums[0],nums[1]);
-    }
-    return Math.max(recur(nums,0,n-2),recur(nums,1,n-1));    
-    }
-    public int recur(int[] nums,int start,int end)
-    {
         int n=nums.length;
-        int[] dp=new int[n-1];
-        dp[0]=nums[start];
-        dp[1]=Math.max(nums[start],nums[start+1]);
-        for(int i=start+2,j=2;i<=end;i++,j++)
+        if(n==1)
         {
-            dp[j]=Math.max(dp[j-1],dp[j-2]+nums[i]);
+            return nums[0];
         }
-        return dp[n-2];
+      return Math.max(robber(nums,0,n-1),robber(nums,1,n));  
+    }
+    public int robber(int[] nums,int s,int n)
+    {
+        if(s==n-1)
+        {
+            return nums[s];
+        }
+        int[] dp=new int[n];
+        dp[s]=nums[s];
+        dp[s+1]=Math.max(nums[s],nums[s+1]);
+        for(int i=s+2;i<n;i++)
+        {
+            dp[i]=Math.max(dp[i-1],dp[i-2]+nums[i]);
+        }
+        return dp[n-1];
     }
 }
