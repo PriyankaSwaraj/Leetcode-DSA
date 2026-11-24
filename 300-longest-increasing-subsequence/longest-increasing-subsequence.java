@@ -1,32 +1,29 @@
 class Solution {
     public int lengthOfLIS(int[] nums) {
-    int n=nums.length,len=1;
-    int[] tail=new int[n];
-    tail[0]=nums[0];
-    for(int i=1;i<n;i++)
-    {
-        if(nums[i]>tail[len-1])
+        int n=nums.length;
+        int[][] dp=new int[n][n+1];
+        for(int i=0;i<n;i++)
         {
-            tail[len]=nums[i];
-            len++;
+            Arrays.fill(dp[i],-1);
         }
-        else{
-            int c=ceilIndex(tail,0,len-1,nums[i]);
-            tail[c]=nums[i];
-        }
-    }  
-    return len;  
+     return recur(0,-1,nums,dp);    
     }
-    public int ceilIndex(int[] tail,int l,int r,int x)
+    public int recur(int idx,int pidx,int[] arr,int[][] dp)
     {
-        while(r>l)
+        if(idx==arr.length)
         {
-            int m=l+(r-l)/2;
-            if(tail[m]>=x)
-            r=m;
-            else
-            l=m+1;
+            return 0;
         }
-        return r;
+        if(dp[idx][pidx+1]!=-1)
+        {
+            return dp[idx][pidx+1];
+        }
+        int nottake=recur(idx+1,pidx,arr,dp);
+        int take=0;
+        if(pidx==-1||arr[idx]>arr[pidx])
+        {
+          take=1+recur(idx+1,idx,arr,dp);
+        }
+        return dp[idx][pidx+1]=Math.max(take,nottake);
     }
 }
