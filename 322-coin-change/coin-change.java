@@ -1,33 +1,24 @@
 class Solution {
     public int coinChange(int[] coins, int amount) {
-        int[] dp=new int[amount+1];
-        Arrays.fill(dp,-1);
-        int ans=recur(coins,amount,dp,coins.length);
-        return ans==Integer.MAX_VALUE?-1:ans;
-    }
-    public int recur(int[] coins,int amount,int[] dp,int n)
-    {
-        if(amount==0)
+       int n=coins.length;
+       int[][] dp=new int[n+1][amount+1];
+       for(int i=1;i<=amount;i++)
+       {
+        dp[n][i]=Integer.MAX_VALUE;
+       } 
+       for(int i=n-1;i>=0;i--)
+       {
+        for(int j=1;j<=amount;j++)
         {
-            return 0;
-        }
-        if(amount<0)
-        {
-            return Integer.MAX_VALUE;
-        }
-        if(dp[amount]!=-1)
-        {
-            return dp[amount];
-        }
-        int ans=Integer.MAX_VALUE;
-        for(int i=0;i<n;i++)
-        {
-            int val=recur(coins,amount-coins[i],dp,n);
-            if(val!=Integer.MAX_VALUE)
+            int take=Integer.MAX_VALUE;
+            if(j>=coins[i]&&dp[i][j-coins[i]]!=Integer.MAX_VALUE)
             {
-                ans=Math.min(ans,val+1);
+                take =1+dp[i][j-coins[i]];
             }
+            int skip=dp[i+1][j];
+            dp[i][j]=Math.min(skip,take);
         }
-        return dp[amount]=ans;
+       }
+       return dp[0][amount]==Integer.MAX_VALUE?-1:dp[0][amount];
     }
 }
